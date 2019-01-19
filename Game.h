@@ -1,14 +1,26 @@
 #pragma once
+#include <iostream>
+#include <time.h>
+#include <stdlib.h>
 #include "SFML/Graphics.hpp"
 #include "Cell.h"
-#include <iostream>
-#include <list>
+#include "MY_DEFINITONS.h"
 
 class Game
 {
-public:
+private:
+	sf::Image icon;
+	sf::RenderWindow window;
+	sf::Event event;
+	int quantity;
+	bool running;
 
-	int wrapValue(int v, int vMax);
-	void start();
+public:
+	Game();
+	void GetParameters();
+	void Run();
+	void EventHandler();
+	bool isRunning();
+	void HideConsole();
 };
 
