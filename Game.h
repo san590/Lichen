@@ -2,6 +2,7 @@
 #include <iostream>
 #include <time.h>
 #include <stdlib.h>
+#include "Grid.h"
 #include "SFML/Graphics.hpp"
 #include "Cell.h"
 #include "MY_DEFINITONS.h"
@@ -14,6 +15,7 @@ private:
 	sf::Event event;
 	int quantity;
 	bool running;
+	Grid grid;
 
 public:
 	Game();

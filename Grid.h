@@ -1,16 +1,16 @@
 #pragma once
 #include "Cell.h"
-#include "Game.h"
-#include <list>
+#include <vector>
 
 
 class Grid
 {
 public:
-	Grid();
-	~Grid();
+	void create(int how_many);
+	void draw(int how_many, sf::RenderWindow &window);
 
-	std::list<std::list<Cell>> CellList;
-	void Create(int how_many);
+private:
+	std::vector<std::vector<Cell>> CellVector;
+
 };
 

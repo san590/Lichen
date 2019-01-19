@@ -36,7 +36,7 @@ void Game::GetParameters() {
 
 		std::cout << "---Liszaj---";
 		std::cout << std::endl;
-		std::cout << "Wymagana iloœæ komórek na bok: liczba nieparzysta wiêksza od 5 i mniejsza od 27";
+		std::cout << "Wymagania dotycz¹ce iloœci komórek na bok: liczba nieparzysta wiêksza od 5 i mniejsza od 27";
 		std::cout << std::endl << std::endl << std::endl;
 
 	}
@@ -46,11 +46,12 @@ void Game::GetParameters() {
 }
 
 void Game::Run() {
-
+	
 	HideConsole();
 	window.create(sf::VideoMode(quantity*CELL_SIDE, quantity*CELL_SIDE), "Lichen");
 	window.setIcon(215, 214, icon.getPixelsPtr());
 	window.requestFocus();
+	grid.create(quantity);
 	EventHandler();
 
 }
@@ -76,7 +77,7 @@ void Game::EventHandler() {
 				}
 				//pauza na spacji
 				window.clear(sf::Color::White);
-				//	grid.draw(window);
+				grid.draw(quantity, window);
 				window.display();
 			}
 
