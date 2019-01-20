@@ -7,16 +7,16 @@ class Cell
 {
 public:
 	Cell(int x, int y, bool alive, bool immune);
-	void setAlive(bool alive, sf::RenderWindow &window);
-	void setImmune(bool immune, sf::RenderWindow &window);
+	void setAlive(bool alive);
+	void setImmune(int timeImmune);
 	void setColour();
 	void draw(sf::RenderWindow &window);
 	int getTimeInfected();
 	int getTimeImmune();
 	void setTimeInfected(int timeInfected);
 	void setTimeImmune(int timeImmune);
-	int changeTimeInfected();
-	int changeTimeImmune();
+	void changeTimeInfected(int timeImmune);
+	void changeTimeImmune();
 	bool isAlive();
 	bool isImmune();
 	

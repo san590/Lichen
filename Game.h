@@ -6,6 +6,7 @@
 #include "SFML/Graphics.hpp"
 #include "Cell.h"
 #include "MY_DEFINITONS.h"
+#include <time.h>
 
 class Game
 {
@@ -24,5 +25,6 @@ public:
 	void EventHandler();
 	bool isRunning();
 	void HideConsole();
+	void wait(float seconds);
 };
 

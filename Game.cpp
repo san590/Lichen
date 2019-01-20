@@ -47,7 +47,7 @@ void Game::GetParameters() {
 
 void Game::Run() {
 	
-	HideConsole();
+//	HideConsole();
 	window.create(sf::VideoMode(quantity*CELL_SIDE, quantity*CELL_SIDE), "Lichen");
 	window.setIcon(215, 214, icon.getPixelsPtr());
 	window.requestFocus();
@@ -76,15 +76,19 @@ void Game::EventHandler() {
 					break;
 				}
 				//pauza na spacji
-				window.clear(sf::Color::White);
-				grid.draw(quantity, window);
-				window.display();
+				
 			}
 
-			running = 0;
-
 		}
+		
+		grid.modify(quantity, 0.5);
+		window.clear(sf::Color::White);
+		grid.draw(quantity, window);
+		window.display();
+		wait(0.05);
+		
 	}
+	running = 0;
 }
 
 bool Game::isRunning() {
@@ -93,4 +97,11 @@ bool Game::isRunning() {
 
 void Game::HideConsole() {
 	::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+}
+
+void Game::wait(float seconds)
+{
+	clock_t endwait;
+	endwait = clock() + seconds * CLOCKS_PER_SEC;
+	while (clock() < endwait) {}
 }

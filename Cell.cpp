@@ -3,17 +3,16 @@
 Cell::Cell(int x, int y, bool alive, bool immune)
 {
 	cellShape = sf::RectangleShape(sf::Vector2f(CELL_SIDE, CELL_SIDE));
-	cellShape.setOutlineThickness(-0.5);
+	cellShape.setOutlineThickness(1);
 	cellShape.setOutlineColor(GREY);
 	cellShape.setPosition(x, y);
 	this->alive = alive;
 	this->immune = immune;
 
-	setColour();
 }
 
 void Cell::setTimeInfected(int timeInfected) {
-	this->timeImmune = timeInfected;
+	this->timeInfected = timeInfected;
 };
 
 void Cell::setTimeImmune(int timeImmune) {
@@ -21,47 +20,52 @@ void Cell::setTimeImmune(int timeImmune) {
 };
 
 
-void Cell::setAlive(bool alive, sf::RenderWindow &window)
+void Cell::setAlive(bool alive)
 {
+	immune = 0;
 	this->alive = alive;
-	draw(window);
 }
 
-void Cell::setImmune(bool immune, sf::RenderWindow &window)
+void Cell::setImmune(int timeImmune)
 {
-	this->immune = immune;
-	draw(window);
+	alive = 1;
+	immune = 1;
+
+	setTimeImmune(timeImmune);
 }
 
-int Cell::changeTimeImmune() {
+
+void Cell::changeTimeImmune() {
+
 	timeImmune--;
-
-	if (timeImmune != 0)
-		return 1;
-	else
-		return 0;
+	std::cout << timeImmune;
+	if (timeImmune == 0)
+		immune = 0;
 }
 
-int Cell::changeTimeInfected() {
+void Cell::changeTimeInfected(int timeImmune) {
+
 	timeInfected--;
 
-	if (timeInfected != 0)
-		return 1;
-	else
-		return 0;
+	std::cout << timeInfected;
+	
+	if (timeInfected == 0) {
+		setImmune(timeImmune);
+	}
 }
 
 void Cell::setColour()
 {
-	if (alive)
-		cellShape.setFillColor(BLACK);
+	if (alive && !immune)
+		cellShape.setFillColor(WHITE);
 	else if (immune)
 		cellShape.setFillColor(LIGHT_GREY);
 	else
-		cellShape.setFillColor(WHITE);
+		cellShape.setFillColor(BLACK);
 }
 
 void Cell::draw(sf::RenderWindow &window) {
+	setColour();
 	window.draw(cellShape);
 }
 
