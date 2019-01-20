@@ -1,7 +1,8 @@
 #pragma once
+
 #include <iostream>
 #include "SFML/Graphics.hpp"
-#include "MY_DEFINITONS.h"
+#include "definitions.h"
 
 class Cell
 {

@@ -1,12 +1,13 @@
 #pragma once
+
 #include <iostream>
 #include <time.h>
 #include <stdlib.h>
-#include "Grid.h"
+#include <windows.h>
 #include "SFML/Graphics.hpp"
+#include "definitions.h"
+#include "Grid.h"
 #include "Cell.h"
-#include "MY_DEFINITONS.h"
-#include <time.h>
 
 class Game
 {
@@ -24,6 +25,7 @@ public:
 	void Run();
 	void EventHandler();
 	bool isRunning();
+	bool pause;
 	void HideConsole();
 	void wait(float seconds);
 };

@@ -1,8 +1,9 @@
 #pragma once
-#include "Cell.h"
-#include <vector>
+
 #include <cstdlib>
 #include <time.h>
+#include <vector>
+#include "Cell.h"
 
 
 class Grid

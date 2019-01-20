@@ -38,7 +38,6 @@ void Cell::setImmune(int timeImmune)
 void Cell::changeTimeImmune() {
 
 	timeImmune--;
-	std::cout << timeImmune;
 	if (timeImmune == 0)
 		immune = 0;
 }
@@ -46,8 +45,6 @@ void Cell::changeTimeImmune() {
 void Cell::changeTimeInfected(int timeImmune) {
 
 	timeInfected--;
-
-	std::cout << timeInfected;
 	
 	if (timeInfected == 0) {
 		setImmune(timeImmune);

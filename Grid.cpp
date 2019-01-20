@@ -20,7 +20,7 @@ void Grid::create(int how_many) {
 		{
 			if (x == half && y == half) {
 				CellVector[x].push_back(Cell(x*CELL_SIDE, y*CELL_SIDE, 0, 0));
-				CellVector[half][half].setTimeInfected(5);
+				CellVector[half][half].setTimeInfected(4);
 			}
 			else
 				CellVector[x].push_back(Cell(x*CELL_SIDE, y*CELL_SIDE, 1, 0));
@@ -42,6 +42,7 @@ void Grid::modify(int how_many, float probability) {
 	int limit = probability * 100;
 	int temp; //wartosc pseudogeneratora
 
+
 	for (int x = 0; x < how_many; x++) {
 		for (int y = 0; y < how_many; y++) {
 
@@ -49,7 +50,7 @@ void Grid::modify(int how_many, float probability) {
 				CellVector[x][y].changeTimeImmune();
 
 			if (!CellVector[x][y].isAlive())
-				CellVector[x][y].changeTimeInfected(4);
+				CellVector[x][y].changeTimeInfected(5);
 		}
 	}
 
@@ -60,22 +61,22 @@ void Grid::modify(int how_many, float probability) {
 		VecInfected.push_back(std::vector<bool>());
 
 		for (int y = 0; y < how_many; y++) {
-			
+
 			temp = generate();
 
 			if (x > 0 && !CellVector[x - 1][y].isAlive() && CellVector[x][y].isAlive() && !CellVector[x][y].isImmune() && limit > temp) {
 				VecInfected[x].push_back(1);
 			}
 
-			else if (x < how_many-1 && !CellVector[x+1][y].isAlive() && CellVector[x][y].isAlive() && !CellVector[x][y].isImmune() && limit > temp) {
+			else if (x < how_many - 1 && !CellVector[x + 1][y].isAlive() && CellVector[x][y].isAlive() && !CellVector[x][y].isImmune() && limit > temp) {
 				VecInfected[x].push_back(1);
 			}
 
-			else if (y > 0 && !CellVector[x][y-1].isAlive() && CellVector[x][y].isAlive() && !CellVector[x][y].isImmune() && limit > temp) {
+			else if (y > 0 && !CellVector[x][y - 1].isAlive() && CellVector[x][y].isAlive() && !CellVector[x][y].isImmune() && limit > temp) {
 				VecInfected[x].push_back(1);
 			}
 
-			else if (y < how_many-1 && !CellVector[x][y+1].isAlive() && CellVector[x][y].isAlive() && !CellVector[x][y].isImmune() && limit > temp) {
+			else if (y < how_many - 1 && !CellVector[x][y + 1].isAlive() && CellVector[x][y].isAlive() && !CellVector[x][y].isImmune() && limit > temp) {
 				VecInfected[x].push_back(1);
 			}
 
@@ -96,11 +97,10 @@ void Grid::modify(int how_many, float probability) {
 
 	//zwalnianie pamiêci
 	std::vector<std::vector<bool>>().swap(VecInfected);
-	
+
 }
 
 
 int Grid::generate() {
 	return rand() % 99 + 1;
-
 }
